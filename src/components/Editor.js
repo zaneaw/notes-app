@@ -2,7 +2,7 @@ import React from "react";
 import ReactMde from "react-mde";
 import Showdown from "showdown";
 
-export default function Editor({ currentNote, updateNote }) {
+export default function Editor({ currentNote, updateNote, darkMode }) {
     const [selectedTab, setSelectedTab] = React.useState("write");
 
     const converter = new Showdown.Converter({
@@ -14,17 +14,19 @@ export default function Editor({ currentNote, updateNote }) {
 
     return (
         <section className="pane editor">
-            <ReactMde
-                value={currentNote.body}
-                onChange={updateNote}
-                selectedTab={selectedTab}
-                onTabChange={setSelectedTab}
-                generateMarkdownPreview={(markdown) =>
-                    Promise.resolve(converter.makeHtml(markdown))
-                }
-                minEditorHeight={80}
-                heightUnits="vh"
-            />
+            <div className={darkMode ? "dark-mode" : ""}>
+                <ReactMde
+                    value={currentNote.body}
+                    onChange={updateNote}
+                    selectedTab={selectedTab}
+                    onTabChange={setSelectedTab}
+                    generateMarkdownPreview={(markdown) =>
+                        Promise.resolve(converter.makeHtml(markdown))
+                    }
+                    minEditorHeight={80}
+                    heightUnits="vh"
+                />
+            </div>
         </section>
     );
 }

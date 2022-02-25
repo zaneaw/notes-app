@@ -1,4 +1,5 @@
 import React from "react";
+import Toggle from "./Toggle";
 
 export default function Sidebar(props) {
 
@@ -37,6 +38,9 @@ export default function Sidebar(props) {
                 </button>
             </div>
             {noteElements}
+            <div className="sidebar--footer">
+                <Toggle darkMode={props.darkMode} setDarkMode={props.setDarkMode} />
+            </div>
         </section>
     );
 }

@@ -2,15 +2,20 @@ import React from "react";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/Editor";
 import Split from "react-split";
+import useDarkMode from "./Hooks/use-dark-mode";
 import { nanoid } from "nanoid";
 
 export default function App() {
+
     const [notes, setNotes] = React.useState(
         () => JSON.parse(localStorage.getItem("notes")) || []
     );
     const [currentNoteId, setCurrentNoteId] = React.useState(
         (notes[0] && notes[0].id) || ""
     );
+
+    const [darkMode, setDarkMode] = useDarkMode();
+
 
     React.useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -69,11 +74,14 @@ export default function App() {
                         setCurrentNoteId={setCurrentNoteId}
                         newNote={createNewNote}
                         deleteNote={deleteNote}
+                        darkMode={darkMode}
+                        setDarkMode={setDarkMode}
                     />
                     {currentNoteId && notes.length > 0 && (
                         <Editor
                             currentNote={findCurrentNote()}
                             updateNote={updateNote}
+                            darkMode={darkMode}
                         />
                     )}
                 </Split>
