@@ -10,7 +10,7 @@ export default function Sidebar(props) {
             <div
                 className={`title ${
                     note.id === props.currentNote.id ? "selected-note" : ""
-                }`}
+                } ${props.darkMode ? "dark-mode" : ""}`}
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
                 <h4 className="text-snippet">

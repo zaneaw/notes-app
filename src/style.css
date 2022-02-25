@@ -129,6 +129,10 @@ button:focus {
           align-items: center;
 }
 
+.title.dark-mode h4 {
+  color: #c9c9c9;
+}
+
 .title--delete {
   display: none;
   cursor: pointer;
@@ -162,6 +166,10 @@ button:focus {
 .selected-note .text-snippet {
   color: white;
   font-weight: 700;
+}
+
+.title.selected-note.dark-mode h4 {
+  color: #ffffff;
 }
 
 .gutter {
