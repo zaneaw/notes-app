@@ -43,9 +43,6 @@ export default function App() {
 
     function deleteNote(event, noteId) {
         event.stopPropagation()
-        console.log("Event: ", event)
-        console.log("NoteID: ", noteId);
-        console.log(notes)
         let newArr = notes.filter(note => note.id !== noteId)
         console.log(newArr)
         return setNotes(newArr);
