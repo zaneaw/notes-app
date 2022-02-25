@@ -1,12 +1,12 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/Editor";
+import Toggle from "./components/Toggle";
 import Split from "react-split";
 import useDarkMode from "./Hooks/use-dark-mode";
 import { nanoid } from "nanoid";
 
 export default function App() {
-
     const [notes, setNotes] = React.useState(
         () => JSON.parse(localStorage.getItem("notes")) || []
     );
@@ -15,7 +15,6 @@ export default function App() {
     );
 
     const [darkMode, setDarkMode] = useDarkMode();
-
 
     React.useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -47,10 +46,10 @@ export default function App() {
     }
 
     function deleteNote(event, noteId) {
-        event.stopPropagation()
-        let newArr = notes.filter(note => note.id !== noteId)
+        event.stopPropagation();
+        let newArr = notes.filter((note) => note.id !== noteId);
         return setNotes(newArr);
-    } 
+    }
 
     function findCurrentNote() {
         return (
@@ -86,11 +85,14 @@ export default function App() {
                     )}
                 </Split>
             ) : (
-                <div className="no-notes">
+                <div className={darkMode ? "dark-mode no-notes" : "no-notes"}>
                     <h1>You have no notes</h1>
                     <button className="first-note" onClick={createNewNote}>
                         Create one now
                     </button>
+                    <div className="no-notes-toggle">
+                        <Toggle darkMode={darkMode} setDarkMode={setDarkMode} />
+                    </div>
                 </div>
             )}
         </main>

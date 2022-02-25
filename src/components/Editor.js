@@ -13,20 +13,18 @@ export default function Editor({ currentNote, updateNote, darkMode }) {
     });
 
     return (
-        <section className="pane editor">
-            <div className={darkMode ? "dark-mode" : ""}>
-                <ReactMde
-                    value={currentNote.body}
-                    onChange={updateNote}
-                    selectedTab={selectedTab}
-                    onTabChange={setSelectedTab}
-                    generateMarkdownPreview={(markdown) =>
-                        Promise.resolve(converter.makeHtml(markdown))
-                    }
-                    minEditorHeight={80}
-                    heightUnits="vh"
-                />
-            </div>
+        <section className={darkMode ? "dark-mode pane editor" : "pane editor"}>
+            <ReactMde
+                value={currentNote.body}
+                onChange={updateNote}
+                selectedTab={selectedTab}
+                onTabChange={setSelectedTab}
+                generateMarkdownPreview={(markdown) =>
+                    Promise.resolve(converter.makeHtml(markdown))
+                }
+                minEditorHeight={80}
+                heightUnits="vh"
+            />
         </section>
     );
 }

@@ -23,7 +23,13 @@ body.dark-mode .dark-mode-toggle > button:last-child {
   color: #ffffff;
 }
 
-.pane .dark-mode * {
+/* Style for no-notes page */
+.no-notes.dark-mode {
+  background-color: #232323;
+}
+
+/* Style for the MDE in dark mode*/
+.editor.dark-mode * {
   background-color: #232323;
   color: #ffffff;
 }
@@ -100,6 +106,7 @@ button:focus {
   color: white;
   border-radius: 3px;
   padding: 1rem;
+  margin-bottom: 20%;
 }
 
 .editor {
@@ -225,6 +232,7 @@ button:focus {
   border-bottom-left-radius: 1px;
   border-bottom-right-radius: 1px;
   margin-top: 4px;
+  color: #ffffff;
 }
 
 .gg-trash::after,
