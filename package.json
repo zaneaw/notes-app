@@ -34,5 +34,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nanoid": "^3.1.28",
+    "react-mde": "^11.5.0",
+    "react-split": "^2.0.13",
+    "showdown": "^1.9.1"
   }
 }
