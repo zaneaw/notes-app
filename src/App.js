@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/Editor";
-import { data } from "./data";
 import Split from "react-split";
 import { nanoid } from "nanoid";
 
@@ -22,19 +21,35 @@ export default function App() {
             id: nanoid(),
             body: "# Type your markdown note's title here",
         };
-        setNotes((prevNotes) => [...prevNotes, newNote]);
+        setNotes((prevNotes) => [newNote, ...prevNotes]);
         setCurrentNoteId(newNote.id);
     }
 
+    // Put the most recently modified note at the top of the list
     function updateNote(text) {
-        setNotes((oldNotes) =>
-            oldNotes.map((oldNote) => {
-                return oldNote.id === currentNoteId
-                    ? { ...oldNote, body: text }
-                    : oldNote;
-            })
-        );
+        setNotes((oldNotes) => {
+            let newArr = [];
+            for (let i = 0; i < oldNotes.length; i++) {
+                const note = oldNotes[i];
+                if (note.id === currentNoteId) {
+                    newArr.unshift({ ...note, body: text });
+                } else {
+                    newArr.push(note);
+                }
+            }
+            return newArr;
+        });
     }
+
+    function deleteNote(event, noteId) {
+        event.stopPropagation()
+        console.log("Event: ", event)
+        console.log("NoteID: ", noteId);
+        console.log(notes)
+        let newArr = notes.filter(note => note.id !== noteId)
+        console.log(newArr)
+        return setNotes(newArr);
+    } 
 
     function findCurrentNote() {
         return (
@@ -57,6 +72,7 @@ export default function App() {
                         currentNote={findCurrentNote()}
                         setCurrentNoteId={setCurrentNoteId}
                         newNote={createNewNote}
+                        deleteNote={deleteNote}
                     />
                     {currentNoteId && notes.length > 0 && (
                         <Editor

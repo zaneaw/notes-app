@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Sidebar(props) {
-    
+
     const re = /^.*/
 
     const noteElements = props.notes.map((note, index) => (
@@ -13,8 +13,17 @@ export default function Sidebar(props) {
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
                 <h4 className="text-snippet">
-                    {note.body === "# Type your markdown note's title here" ? "New Note" : note.body.match(re)}
+                    {note.body === "" ||
+                    note.body === "# Type your markdown note's title here"
+                        ? "New Note"
+                        : note.body.match(re)}
                 </h4>
+                <button
+                    className="delete-btn"
+                    onClick={(event) => props.deleteNote(event, note.id)}
+                >
+                    <i className="gg-trash trash-icon"></i>
+                </button>
             </div>
         </div>
     ));
