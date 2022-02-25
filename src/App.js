@@ -15,7 +15,6 @@ export default function App() {
 
     React.useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
-        // console.log(JSON.stringify(notes[0].body));
     }, [notes]);
 
     function createNewNote() {
@@ -23,7 +22,7 @@ export default function App() {
             id: nanoid(),
             body: "# Type your markdown note's title here",
         };
-        setNotes((prevNotes) => [newNote, ...prevNotes]);
+        setNotes((prevNotes) => [...prevNotes, newNote]);
         setCurrentNoteId(newNote.id);
     }
 
