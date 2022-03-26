@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-// Code from https://usehooks.com/useMedia
-
 // Alternate hook that accepts a single query
 export default function useMedia(queries, values, defaultValue) {
     // State and setter for matched value

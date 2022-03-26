@@ -4,7 +4,6 @@ import useMedia from "./use-media";
 
 function useDarkMode() {
     // Use our useLocalStorage hook to persist state through a page refresh.
-    // Read the recipe for this hook to learn more: usehooks.com/useLocalStorage
     const [enabledState, setEnabledState] =
         useLocalStorage("dark-mode-enabled");
 
@@ -22,10 +21,9 @@ function useDarkMode() {
         () => {
             const className = "dark-mode";
             const bodyElement = window.document.body;
-            const mdeElement = document.getElementById("mde-header")
+            // const mdeElement = document.getElementById("mde-header")
             if (enabled) {
                 bodyElement.classList.add(className);
-                // mdeElement.classList.add(className);
             } else {
                 bodyElement.classList.remove(className);
                 // mdeElement.classList.remove(className);
@@ -38,11 +36,6 @@ function useDarkMode() {
     return [enabled, setEnabledState];
 }
 
-// Compose our useMedia hook to detect dark mode preference.
-// The API for useMedia looks a bit weird, but that's because ...
-// ... it was designed to support multiple media queries and return values.
-// Thanks to hook composition we can hide away that extra complexity!
-// Read the recipe for useMedia to learn more: usehooks.com/useMedia
 function usePrefersDarkMode() {
     return useMedia(["(prefers-color-scheme: dark)"], [true], false);
 }
